@@ -13,7 +13,7 @@ You can install the package via composer:
 composer require combindma/backup
 ```
 
-You can publish the config file with:
+You must publish the config file with:
 ```bash
 php artisan vendor:publish --provider="Combindma\Backup\BackupServiceProvider" --tag="backup-config"
 ```
