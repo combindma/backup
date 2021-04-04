@@ -1,47 +1,48 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "combindma/backup",
+    "description": "Backup Laravel Package",
     "keywords": [
-        ":vendor_name",
+        "combindma",
         "laravel",
-        "package_slug"
+        "backup"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/combindma/backup",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Combind",
+            "email": "hello@combind.ma",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^8.0",
-        "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.0"
+        "combindma/dashui": "^1.0",
+        "illuminate/contracts": "^8.0",
+        "spatie/laravel-package-tools": "^1.4.3"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "brianium/paratest": "^6.2",
         "nunomaduro/collision": "^5.3",
         "orchestra/testbench": "^6.15",
         "phpunit/phpunit": "^9.3",
-        "spatie/laravel-ray": "^1.9",
         "vimeo/psalm": "^4.4"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Combindma\\Backup\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Combindma\\Backup\\Tests\\": "tests"
         }
     },
     "scripts": {
         "psalm": "vendor/bin/psalm",
         "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
+        "test-filter": "vendor/bin/phpunit --no-coverage --filter",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
@@ -50,11 +51,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
-            }
+                "Combindma\\Backup\\BackupServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
