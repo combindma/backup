@@ -19,7 +19,9 @@
         "php": "^8.0",
         "combindma/dashui": "^1.0",
         "illuminate/contracts": "^8.0",
-        "spatie/laravel-package-tools": "^1.4.3"
+        "spatie/laravel-backup": "^7.3",
+        "spatie/laravel-package-tools": "^1.4.3",
+        "ext-zip": "*"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
