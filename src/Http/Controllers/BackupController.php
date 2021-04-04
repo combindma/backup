@@ -43,7 +43,7 @@ class BackupController extends Controller
         // reverse the backups, so the newest one would be on top
         $backups = array_reverse($backups);
 
-        return view('admin.pages.backups', compact('backups'));
+        return view('backup::index', compact('backups'));
     }
 
     public function create()
@@ -74,7 +74,7 @@ class BackupController extends Controller
         }
 
         flash($message);
-        return redirect(route('admin::backups'));
+        return redirect(route('backup::backups.index'));
     }
 
     public function download()
@@ -103,7 +103,7 @@ class BackupController extends Controller
         if ($disk->exists($file_name)) {
             $disk->delete($file_name);
             flash('Sauvegarde supprimée avec succès');
-            return redirect(route('admin::backups'));
+            return redirect(route('backup::backups.index'));
         }
         return abort(404, 'Le fichier de sauvegarde n\'existe pas.');
     }
