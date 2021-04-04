@@ -2,19 +2,18 @@
 
 namespace Combindma\Backup\Http\Controllers;
 
-
+use Exception;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Adapter\Local;
-use Exception;
 
 class BackupController extends Controller
 {
     public function index()
     {
-        if (!count(config('backup.backup.destination.disks'))) {
+        if (! count(config('backup.backup.destination.disks'))) {
             dd('Aucun disque de sauvegarde n\'est configuré dans config/backup.php');
         }
 
@@ -29,12 +28,12 @@ class BackupController extends Controller
                 // only take the zip files into account
                 if (substr($f, -4) === '.zip' && $disk->exists($f)) {
                     $backups[] = [
-                        'file_path'     => $f,
-                        'file_name'     => str_replace('backups/', '', $f),
-                        'file_size'     => $disk->size($f),
+                        'file_path' => $f,
+                        'file_name' => str_replace('backups/', '', $f),
+                        'file_size' => $disk->size($f),
                         'last_modified' => $disk->lastModified($f),
-                        'disk'          => $disk_name,
-                        'download'      => $adapter instanceof Local,
+                        'disk' => $disk_name,
+                        'download' => $adapter instanceof Local,
                     ];
                 }
             }
@@ -74,6 +73,7 @@ class BackupController extends Controller
         }
 
         flash($message);
+
         return redirect(route('backup::backups.index'));
     }
 
@@ -92,6 +92,7 @@ class BackupController extends Controller
 
             return abort(404, 'Le fichier de sauvegarde n\'existe pas.');
         }
+
         return abort(404, 'Seuls les téléchargments à partir du système de fichier local sont supportés.');
     }
 
@@ -103,8 +104,10 @@ class BackupController extends Controller
         if ($disk->exists($file_name)) {
             $disk->delete($file_name);
             flash('Sauvegarde supprimée avec succès');
+
             return redirect(route('backup::backups.index'));
         }
+
         return abort(404, 'Le fichier de sauvegarde n\'existe pas.');
     }
 }
