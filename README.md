@@ -15,7 +15,7 @@ composer require combindma/backup
 
 You must publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Combindma\Backup\BackupServiceProvider" --tag="backup-config"
+php artisan vendor:publish --tag="backup-config"
 ```
 
 (Important)You must add this to your filesystems config
